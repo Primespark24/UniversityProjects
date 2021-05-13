@@ -143,20 +143,20 @@ export const FormField3 = ({clientData }) => {
       let editor;
       if (fieldData.type) {
           if (fieldData.type === fieldTypes.string) {
-              editor = <Grid item><TextField value={value} onChange={(e) => updateFunc(e.target.value)} /></Grid>;
+              editor = <TextField value={value} onChange={(e) => updateFunc(e.target.value)} />;
           } else if (fieldData.type === fieldTypes.bool) {
-              editor = <Grid item><Checkbox checked={value} onChange={() => updateFunc(!value)} /></Grid>;
+              editor = <Checkbox checked={value} onChange={() => updateFunc(!value)} />;
           } else if (fieldData.type === fieldTypes.file) {
-              editor = <Grid item><FileUpload clientId={clientData._id} fieldId={fieldData._id} /></Grid>;
-          } else {
-              editor = <div/>;
+              editor = <FileUpload clientId={clientData._id} fieldId={fieldData._id} />;
           }
       }
       return    <StyledTreeItem key={fieldData._id} nodeId={fieldData._id} labelText={fieldData.name} labelIcon={Label}>
                     <Grid item>
                       {data.filter((f) => (f.parentId === fieldData._id)).map((f) => renderTree(f))}
                     </Grid>
-                    {editor}
+                    <Grid item>
+                      {editor}
+                    </Grid>
                     <Divider variant="middle" />
                 </StyledTreeItem>
     };
