@@ -19,6 +19,7 @@ function useUser() {
 
 function ProvideUser({ children }) {
     const user = useTracker(() => Meteor.user());
+    console.log("USER2", user);
     return (
         <authContext.Provider value={user}>
             {children}
@@ -30,7 +31,6 @@ function ProvideUser({ children }) {
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, authUser = (user, location) => !!user, ...rest }) {
     const user = useUser();
-    console.log("USER", user);
     return (
         <Route
             {...rest}
